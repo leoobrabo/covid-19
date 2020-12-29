@@ -2,10 +2,18 @@ import PySimpleGUI as sg
 from covid import Covid
 import sys
 
-sg.theme('Reddit')
+covid = Covid()
+covid_brasil = covid.get_status_by_country_id(24)
+paises = covid.list_countries()
 
-lista = ('US', 'India', 'Brazil', 'Russia', 'France', 'United Kingdom', 'Turkey', 'Italy', 'Spain', 'Germany', 'Colombia', 'Argentina', 'Mexico', 'Poland', 'Iran', 'Ukraine', 'South Africa', 'Peru', 'Netherlands', 'Indonesia', 'Czechia', 'Belgium', 'Romania', 'Chile', 'Iraq', 'Canada', 'Bangladesh', 'Pakistan', 'Philippines', 'Switzerland', 'Morocco', 'Sweden', 'Israel', 'Portugal', 'Saudi Arabia', 'Austria', 'Serbia', 'Hungary', 'Jordan', 'Nepal', 'Panama', 'Japan', 'Georgia', 'Azerbaijan', 'Ecuador', 'Croatia', 'United Arab Emirates', 'Kazakhstan', 'Bulgaria', 'Belarus', 'Lebanon', 'Slovakia', 'Dominican Republic', 'CostaRica', 'Denmark', 'Armenia', 'Bolivia', 'Kuwait', 'Qatar', 'Moldova', 'Greece', 'West Bankand Gaza', 'Guatemala', 'Lithuania', 'Egypt', 'Tunisia', 'Oman', 'Ethiopia', 'Burma', 'Honduras', 'Slovenia', 'Venezuela', 'Bosniaand Herzegovina', 'Malaysia', 'Paraguay', 'Libya', 'Algeria', 'Kenya', 'China', 'Bahrain', 'Ireland', 'Nigeria', 'North Macedonia', 'Kyrgyzstan', 'Uzbekistan', 'Korea,South', 'Singapore', 'Albania', 'Ghana', 'Afghanistan', 'Kosovo', 'Norway', 'Montenegro', 'Luxembourg', 'El Salvador', 'Sri Lanka', 'Latvia', 'Finland', 'Uganda',
-         'Australia', 'Estonia', 'Cameroon', 'Sudan', 'Namibia', 'Coted"Ivoire"', 'Cyprus', 'Zambia', 'Senegal', 'Mozambique', 'Madagascar', 'Uruguay', 'Angola', 'Congo(Kinshasa)', 'Botswana', 'Mauritania', 'Guinea', 'Maldives', 'Tajikistan', 'Zimbabwe', 'Jamaica', 'Malta', 'Cabo Verde', 'Cuba', 'Syria', 'Belize', 'Haiti', 'Gabon', 'Eswatini', 'Rwanda', 'Andorra', 'Bahamas', 'Trinidad and Tobago', 'Congo(Brazzaville)', 'Mali', 'Thailand', 'Malawi', 'BurkinaFaso', 'Guyana', 'Suriname', 'Nicaragua', 'Djibouti', 'Iceland', 'EquatorialGuinea', 'CentralAfricanRepublic', 'Somalia', 'Gambia', 'Togo', 'SouthSudan', 'Benin', 'Niger', 'Lesotho', 'SierraLeone', 'Guinea-Bissau', 'SanMarino', 'NewZealand', 'Yemen', 'Liechtenstein', 'Chad', 'Liberia', 'Vietnam', 'Mongolia', 'Eritrea', 'SaoTomeandPrincipe', 'Burundi', 'Monaco', 'Taiwan*', 'PapuaNewGuinea', 'Comoros', 'DiamondPrincess', 'Bhutan', 'Mauritius', 'Tanzania', 'Barbados', 'Cambodia', 'SaintLucia', 'Seychelles', 'AntiguaandBarbuda', 'Brunei', 'Grenada', 'SaintVincentandtheGrenadines', 'Dominica', 'Fiji', 'Timor-Leste', 'Laos', 'SaintKittsandNevis', 'HolySee', 'SolomonIslands', 'MSZaandam', 'MarshallIslands', 'Samoa', 'Vanuatu')
+lista = []
+tamanho = len(paises)
+
+for i in range(tamanho):
+    lista.append(paises[i]['name'])
+
+
+sg.theme('Reddit')
 
 layout = [
     [sg.Text('Casos de Covid-19 (Global)')],
@@ -40,9 +48,6 @@ layout = [
 ]
 
 janela = sg.Window('Dados Covid-19', layout=layout)
-covid = Covid()
-covid_brasil = covid.get_status_by_country_id(24)
-paises = covid.list_countries()
 
 while True:
     event, valores = janela.Read()
