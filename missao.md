@@ -2,6 +2,8 @@
 
 ##  Essa aplicação deverá nos permitir visualizar dados de forma visual do mundo e tambem dos casos no Brasil
 
+*adcionado combobox para seleção de paises
+
 ### BIBLIOTECAS ULTILIZADAS
 
 #### PARA ATUALIZAÇÃO DOS DADOS DA COVID
