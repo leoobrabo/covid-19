@@ -72,9 +72,12 @@ while True:
     elif event == 'Casos Fatais Brasil':
         janela['mortes brasil'].update(covid_brasil['deaths'])
     elif event == 'Escolha':
-        escolha_caso = covid.get_status_by_country_name(valores['escolha'])
-        pais = escolha_caso['country']
-        janela['pais'].update(f'Casos de Covid-19 {pais}')
+        try:
+            escolha_caso = covid.get_status_by_country_name(valores['escolha'])
+            pais = escolha_caso['country']
+            janela['pais'].update(f'Casos de Covid-19 {pais}')
+        except Exception as error:
+            sg.Popup('Favor escolher um valor')
     elif event == 'Recuperados':
         janela['recuperados escolha'].update(float(escolha_caso['recovered']))
     elif event == 'Ativos':
